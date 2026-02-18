@@ -76,12 +76,21 @@ public class Carrinho {
     }
 
     public boolean estaVazio() {
-
+        return (itens.isEmpty());
     }
+
     public void limpar() {
-
+       itens.clear();
     }
 
+    public Pedido finalizarCompra() {
+        if(estaVazio()) {
+            throw new IllegalStateException("Não podemos finalizar compra sem nada");
+        }
+        Pedido pedido = new Pedido(gerarResumo());
+        limpar();
+        return pedido;
+    }
 
 //    void removerItem(String nomeProduto) {
 //
